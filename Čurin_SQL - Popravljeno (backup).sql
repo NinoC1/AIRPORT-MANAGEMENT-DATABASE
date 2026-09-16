@@ -309,16 +309,12 @@ INSERT INTO AIRLINE VALUES(NULL, 'Croatia Airlines', 'low cost carriers', '66', 
 #3.
 #SELECT ime,priimek,datum_od,datum_do, DATEDIFF(datum_do, datum_od) AS Dni_zaposlitve FROM OSEBA,DELAVEC WHERE Delavec_idDelavec = idDelavec;
 
-
 #5.
-/*
 SELECT MAX(maks) AS najvec_letov
 FROM( 
         SELECT Ime_model, MAX(st_leta) AS maks
          FROM AVION,POLET WHERE Avion_IdAvion = idAvion
          GROUP BY idAvion)leti;
-         */
-/*
 DROP VIEW IF EXISTS najvec_letov;
 CREATE VIEW najvec_letov AS
 	SELECT ime_model, MAX(st_leta) as maks
@@ -329,39 +325,33 @@ CREATE VIEW najvec_letov AS
 SELECT * FROM najvec_letov
 	WHERE maks = (SELECT MAX(maks)
 	FROM najvec_letov);
-*/
-         
-         
+   
 #7.
-/*
 SET SQL_SAFE_UPDATES = 0;
 SELECT * FROM AIRLINE;
 UPDATE AIRLINE SET Ime_airline = "Swiss International Air Lines" WHERE Ime_airline = "Swiss International";
 SELECT * FROM AIRLINE; 
-*/
+
 
 #8.
-/* SET SQL_SAFE_UPDATES = 0;
+SET SQL_SAFE_UPDATES = 0;
 SELECT * FROM LOKAL;
 DELETE FROM LOKAL WHERE Ime_lokala = "Ljubljancek";
-SELECT * FROM LOKAL; */
+SELECT * FROM LOKAL;
 
-# Dodatno vprašanje
-/*
+Dodatno vprašanje
 SELECT MAX(maks) AS st_lokaloh_na_katerih_je_zaposlen
 FROM( 
         SELECT ime_delavca + ' ' + priimek_delavca, MAX(Delavec_idDelavec) AS maks
          FROM DELAVEC,LOKAL WHERE Delavec_idDelavec = idDelavec
          GROUP BY idDelavec)st_poslov;
-*/
-/*
+
 SELECT MAX(maks) AS st_lokaloh_na_katerih_je_zaposlen
 FROM( 
         SELECT ime_delavca + ' ' + priimek_delavca, MAX(st_sluzb) AS maks
          FROM DELAVEC
          GROUP BY idDelavec)st_poslov;
-*/
-/*
+
 SELECT MAX(maks) AS st_lokaloh_na_katerih_je_zaposlen
 FROM( 
         SELECT ime_delavca, priimek_delavca, MAX(st_sluzb) AS maks
@@ -370,8 +360,7 @@ FROM(
          
 SELECT ime_delavca, priimek_delavca, st_sluzb 
 FROM DELAVEC
-*/
-/*
+
 DROP VIEW IF EXISTS najvecje_st_sluzb_delavca;
 CREATE VIEW najvecje_st_sluzb_delavca AS
 	SELECT ime_delavca, priimek_delavca, MAX(Delavec_idDelavec) as st_sluzb
@@ -382,7 +371,7 @@ CREATE VIEW najvecje_st_sluzb_delavca AS
 SELECT * FROM najvecje_st_sluzb_delavca
 	WHERE st_sluzb = (SELECT MAX(st_sluzb)
 	FROM najvecje_st_sluzb_delavca);
-    */
+    
     
 
 
